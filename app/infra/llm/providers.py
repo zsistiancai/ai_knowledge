@@ -28,6 +28,35 @@ class LLMProvider:
         """
         return get_llm_client(model=infra_config.llm.lv_model)
 
+    def embedding_model(self):
+        """
+        获取 Embedding 模型对象。
+
+        Returns:
+            Any: BGE-M3 Embedding 模型实例。
+        """
+        return get_bge_m3_ef()
+
+    def reranker_model(self):
+        """
+        获取重排模型对象。
+        Returns:
+            Any: 可对问答对进行相关性打分的重排模型实例。
+        """
+        return get_reranker_model()
+
+    def embed_documents(self, texts: list[str]) -> dict:
+        """
+        为文本列表生成向量表示。
+
+        Args:
+            texts: 待向量化的文本列表。
+
+        Returns:
+            dict: 同时包含稠密向量与稀疏向量的结果字典。
+        """
+        return generate_embeddings(texts)
+
 
 # 创建全局唯一的 LLM 提供器实例，全项目通用，避免重复创建
 llm_provider = LLMProvider()
