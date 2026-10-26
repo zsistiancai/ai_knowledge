@@ -32,6 +32,8 @@ class MilvusGateway:
         """
         return infra_config.milvus.item_name_collection
 
+
+
     def client(self):
         """
         获取 Milvus 客户端实例。
