@@ -19,9 +19,9 @@ if __name__ == "__main__":
     mock_state = {
         "session_id": "test_rrf_session",
         "is_stream": False,
-        "original_query": "HAK 180 烫金机怎么操作？",
-        "rewritten_query": "HAK 180 烫金机的具体操作步骤是什么？",
-        "item_names": ["HAK 180 烫金机"],
+        "original_query": "Brother HAK 180 烫金机怎么操作？",
+        "rewritten_query": "Brother HAK 180 烫金机的具体操作步骤是什么？",
+        "item_names": ["Brother HAK 180 烫金机"],
     }
 
     from app.process.query.agent.nodes.node_search_embedding import node_search_embedding

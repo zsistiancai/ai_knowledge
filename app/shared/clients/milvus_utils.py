@@ -26,6 +26,8 @@ def get_milvus_client() -> MilvusClient | None:
                 return None
             # 初始化Milvus客户端
             _milvus_client = MilvusClient(uri=milvus_uri, db_name=milvus_config.milvus_db_name)
+            # 计算RAG召回率，准确率使用milvus_rag_metrics_db_name数据库
+            # _milvus_client = MilvusClient(uri=milvus_uri, db_name=milvus_config.milvus_rag_metrics_db_name)
             logger.info("Milvus客户端连接成功")
         return _milvus_client
     except Exception as e:

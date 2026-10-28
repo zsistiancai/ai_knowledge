@@ -13,6 +13,7 @@ class MilvusConfig:
     entity_name_collection: str
     item_name_collection: str
     milvus_db_name: str
+    milvus_rag_metrics_db_name: str
 
 
 milvus_config = MilvusConfig(
@@ -21,4 +22,5 @@ milvus_config = MilvusConfig(
     entity_name_collection=env_str("ENTITY_NAME_COLLECTION"),
     item_name_collection=env_str("ITEM_NAME_COLLECTION"),
     milvus_db_name=env_str("MILVUS_DB_NAME"),
+    milvus_rag_metrics_db_name=env_str("MILVUS_RAG_METRICS_DB_NAME"),
 )

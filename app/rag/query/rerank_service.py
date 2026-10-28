@@ -10,10 +10,10 @@ from app.shared.runtime.load_prompt import load_prompt
 from app.shared.runtime.logger import step_log, logger
 
 # ====================== 重排全局配置 ======================
-RERANK_MAX_TOPK: int = 10                # 动态截断最多保留10条结果
+RERANK_MAX_TOPK: int = 6                # 动态截断最多保留10条结果
 RERANK_MIN_TOPK: int = 1                 # 动态截断最少保留1条结果
-RERANK_GAP_RATIO: float = 2              # 分数断崖比例阈值（用于动态截断）
-RERANK_GAP_ABS: float = 2                # 分数断崖绝对值阈值
+RERANK_GAP_RATIO: float = 0.2            # 分数断崖比例阈值（用于动态截断）
+RERANK_GAP_ABS: float = 0.2              # 分数断崖绝对值阈值
 RERANK_MAX_INPUT_TOKENS: int = 512       # 重排模型最大输入token长度
 RERANK_SUMMARY_CHAR_RATIO: float = 1.3   # 中文token与字符换算比例 1token≈1.3字符
 RERANK_MIN_SUMMARY_CHARS: int = 50       # 文本精简后最小字符数
@@ -94,7 +94,7 @@ def build_question_pairs(question: str, final_chunk_list: list[dict], reranker) 
             # 计算允许保留的最大字符数（token → 字符换算）
             limit = max(
                 RERANK_MIN_SUMMARY_CHARS,
-                int((RERANK_MAX_INPUT_TOKENS - len(query_tokens) - 4) / RERANK_SUMMARY_CHAR_RATIO (1.3)),
+                int((RERANK_MAX_INPUT_TOKENS - len(query_tokens) - 4) / RERANK_SUMMARY_CHAR_RATIO),
             )
             # 精简超长文本
             answer_for_rerank = summarize_long_rerank_text(question=question, answer=answer, limit=limit)
