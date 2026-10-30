@@ -46,6 +46,7 @@ def merge_rrf_and_web(rrf_chunks: list[dict], web_search_docs: list[dict]) -> li
     # 处理本地RRF融合结果
     for chunk in rrf_chunks or []:
         final_chunk_list.append({
+            "chunk_id": chunk.get("chunk_id"),
             "title": chunk.get("title"),
             "text": chunk.get("content"),    # 本地知识库取content字段
             "url": None,                     # 本地数据无URL
@@ -56,6 +57,7 @@ def merge_rrf_and_web(rrf_chunks: list[dict], web_search_docs: list[dict]) -> li
     # 处理联网搜索网页结果
     for doc in web_search_docs or []:
         final_chunk_list.append({
+            "chunk_id": None,
             "title": doc.get("title"),
             "text": doc.get("snippet"),      # 网页结果取摘要snippet
             "url": doc.get("url"),           # 网页保留URL

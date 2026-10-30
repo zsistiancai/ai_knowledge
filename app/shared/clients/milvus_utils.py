@@ -25,9 +25,9 @@ def get_milvus_client() -> MilvusClient | None:
                 logger.error("Milvus客户端连接失败：缺少MILVUS_URL环境变量配置")
                 return None
             # 初始化Milvus客户端
-            _milvus_client = MilvusClient(uri=milvus_uri, db_name=milvus_config.milvus_db_name)
+            # _milvus_client = MilvusClient(uri=milvus_uri, db_name=milvus_config.milvus_db_name)
             # 计算RAG召回率，准确率使用milvus_rag_metrics_db_name数据库
-            # _milvus_client = MilvusClient(uri=milvus_uri, db_name=milvus_config.milvus_rag_metrics_db_name)
+            _milvus_client = MilvusClient(uri=milvus_uri, db_name=milvus_config.milvus_rag_metrics_db_name)
             logger.info("Milvus客户端连接成功")
         return _milvus_client
     except Exception as e:
